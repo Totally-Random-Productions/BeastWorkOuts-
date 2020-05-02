@@ -1,7 +1,7 @@
 <!--TODO: Everything lol -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no_background_image">
 <head>
 	<title> Workout Programs | Best Fit </title>
 	<meta charset="UTF-8">
@@ -9,104 +9,12 @@
 
     <!--NAV BAR STYLE SHEET -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <style>
-    /*Clearing Floats*/
-    .cf:before, .cf:after{
-        content:"";
-        display:table;
-    }
-
-    .cf:after{
-        clear:both;
-    }
-
-    .cf{
-        zoom:1;
-    }
-
-    /* Form wrapper styling */
-    .search-wrapper {
-        width: 290px;
-        margin: 100px auto 40px auto;
-        border-radius: 30px;
-		background: transparent;
-        box-shadow: 0 4px 20px -2px #e9e9e9;
-    }
-
-	/* Form text input */
-    .search-wrapper input {
-      padding-left: 20px;
-        width: 190px;
-        height: 38px;
-        padding: 10px 5px;
-        float: left;
-        font: bold 13px 'lucida sans', 'trebuchet MS', 'Tahoma';
-        border: 0;
-        background: #fff;
-        border-radius: 40px;
-        border-top-style: none;
-    }
-
-    .search-wrapper input:focus {
-        outline: 0;
-        background: #fff;
-        box-shadow: 0 0 2px rgba(0,0,0,0.8) inset;
-    }
-
-    .search-wrapper input::-webkit-input-placeholder {
-       color: #999;
-       font-weight: normal;
-       font-style: italic;
-		padding-left: 20px;
-    }
-
-    .search-wrapper input:-moz-placeholder {
-        color: #999;
-        font-weight: normal;
-        font-style: italic;
-    }
-
-    .search-wrapper input:-ms-input-placeholder {
-        color: #999;
-        font-weight: normal;
-        font-style: italic;
-		border-style: none;
-    }
-
-    /* Form submit button */
-    .search-wrapper button {
-        overflow: visible;
-        position: relative;
-        float: right;
-        border: 0;
-        padding: 0;
-        cursor: pointer;
-        height: 40px;
-        width: 90px;
-        font: 13px/40px 'lucida sans', 'trebuchet MS', 'Tahoma';
-        color: #fff;
-        text-transform: uppercase;
-        background: #696969; ;
-        border-radius: 40px;
-    }
-
-    .search-wrapper button:hover{
-         background: #696969;
-    }
-
-    .search-wrapper button:active,
-    .search-wrapper button:focus{
-        background: #CCC;
-        outline: 0;
-    }
-
-    .search-wrapper button:focus:before,
-    .search-wrapper button:active:before{
-            border-right-color: #696969;
-    }
+ /* Moved to main.css*/
 </style>
 
 </head>
@@ -117,25 +25,30 @@
       <a class="navbar-brand" href="#">Best Fit</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="home.html">Home</a></li>
-      <li><a href="workouts.html">Workouts and Programs</a></li>
+      <li class="active"><a href="home">Home</a></li>
+      <li><a href="workouts">Workouts and Programs</a></li>
       <li><a href="#">About Us</a></li>
+        <li>
+    <form class="newsearch" style="float:right">
+        <input type="text" placeholder="Search workouts ...">
+        <button type="submit">Search</button>
+    </form></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-        <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        <li><a href="signup.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a href="signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 
     </ul>
   </div>
 </nav>
 
 <br>
-<h1> Workouts and Programs </h1>
+<h1> Workouts and Programs
 
     <form class="search-wrapper cf" style="float:right">
         <input type="text" placeholder="Search here ..." required style="box-shadow: none;">
         <button type="submit">Search</button>
-    </form>
+    </form></h1>
 
 <!-- SEARCH BAR CODE - ONLY ONE THAT WORKING ANYWAY
 <div class = "alignRight">
