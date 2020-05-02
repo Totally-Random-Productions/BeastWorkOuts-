@@ -1,1 +1,190 @@
 <!--TODO: Everything lol -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title> Workout Programs | Best Fit </title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--NAV BAR STYLE SHEET -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<style>
+    /*Clearing Floats*/
+    .cf:before, .cf:after{
+        content:"";
+        display:table;
+    }
+
+    .cf:after{
+        clear:both;
+    }
+
+    .cf{
+        zoom:1;
+    }
+
+    /* Form wrapper styling */
+    .search-wrapper {
+        width: 290px;
+        margin: 100px auto 40px auto;
+        border-radius: 30px;
+		background: transparent;
+        box-shadow: 0 4px 20px -2px #e9e9e9;
+    }
+
+	/* Form text input */
+    .search-wrapper input {
+      padding-left: 20px;
+        width: 190px;
+        height: 38px;
+        padding: 10px 5px;
+        float: left;
+        font: bold 13px 'lucida sans', 'trebuchet MS', 'Tahoma';
+        border: 0;
+        background: #fff;
+        border-radius: 40px;
+        border-top-style: none;
+    }
+
+    .search-wrapper input:focus {
+        outline: 0;
+        background: #fff;
+        box-shadow: 0 0 2px rgba(0,0,0,0.8) inset;
+    }
+
+    .search-wrapper input::-webkit-input-placeholder {
+       color: #999;
+       font-weight: normal;
+       font-style: italic;
+		padding-left: 20px;
+    }
+
+    .search-wrapper input:-moz-placeholder {
+        color: #999;
+        font-weight: normal;
+        font-style: italic;
+    }
+
+    .search-wrapper input:-ms-input-placeholder {
+        color: #999;
+        font-weight: normal;
+        font-style: italic;
+		border-style: none;
+    }
+
+    /* Form submit button */
+    .search-wrapper button {
+        overflow: visible;
+        position: relative;
+        float: right;
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+        height: 40px;
+        width: 90px;
+        font: 13px/40px 'lucida sans', 'trebuchet MS', 'Tahoma';
+        color: #fff;
+        text-transform: uppercase;
+        background: #696969; ;
+        border-radius: 40px;
+    }
+
+    .search-wrapper button:hover{
+         background: #696969;
+    }
+
+    .search-wrapper button:active,
+    .search-wrapper button:focus{
+        background: #CCC;
+        outline: 0;
+    }
+
+    .search-wrapper button:focus:before,
+    .search-wrapper button:active:before{
+            border-right-color: #696969;
+    }
+</style>
+
+</head>
+<body class=" landing">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Best Fit</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="home.html">Home</a></li>
+      <li><a href="workouts.html">Workouts and Programs</a></li>
+      <li><a href="#">About Us</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a href="signup.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+
+    </ul>
+  </div>
+</nav>
+
+<br>
+<h1> Workouts and Programs </h1>
+
+    <form class="search-wrapper cf" style="float:right">
+        <input type="text" placeholder="Search here ..." required style="box-shadow: none;">
+        <button type="submit">Search</button>
+    </form>
+
+<!-- SEARCH BAR CODE - ONLY ONE THAT WORKING ANYWAY
+<div class = "alignRight">
+    <div class="container">
+      <div class="row searchFilter" >
+         <div class="col-sm-4" >
+          <div class="input-group" >
+           <input id="table_filter" type="text" class="form-control" aria-label="Text input with segmented button dropdown" >
+           <div class="input-group-btn" >
+            <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="label-icon" >Category</span> <span class="caret" >&nbsp;</span></button>
+            <div class="dropdown-menu dropdown-menu-right" >
+               <ul class="category_filters" >
+                <li >
+                 <input class="cat_type category-input" data-label="All" id="all" value="" name="radios" type="radio" ><label for="all" >All</label>
+                </li>
+                <li >
+                 <input type="radio" name="radios" id="Newest" value="Newest" ><label class="category-label" for="Newest" >Newest Workout</label>
+                </li>
+                <li >
+                 <input type="radio" name="radios" id="Oldest" value="Oldest" ><label class="category-label" for="Oldest" >Oldest Workout</label>
+                </li>
+                <li >
+                 <input type="radio" name="radios" id="Longest" value="Longest" ><label class="category-label" for="Longest" >Longest Workout</label>
+                </li>
+                <li >
+                 <input type="radio" name="radios" id="Shortest" value="Shortest" ><label class="category-label" for="Shortest" >Shortest Workout</label>
+                </li>
+               </ul>
+            </div>
+            <button id="searchBtn" type="button" class="btn btn-secondary btn-search" ><span class="glyphicon glyphicon-search" >&nbsp;</span> <span class="label-icon" >Search</span></button>
+           </div>
+          </div>
+         </div>
+      </div>
+    </div>
+</div>
+
+
+<div class="wrap">
+   <div class="search">
+      <input type="text" class="searchTerm" placeholder="What are you looking for?">
+      <button type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
+     </button>
+   </div>
+</div>
+
+-->
+
+
+</body>
+</html>
