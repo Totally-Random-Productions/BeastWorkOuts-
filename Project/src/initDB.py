@@ -1,4 +1,4 @@
-from main import db, Student, app
+from app import db, Student, app
 import csv
 
 db.create_all(app=app);
