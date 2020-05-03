@@ -1,8 +1,7 @@
 from flask import Flask, render_template
-# from flask_jwt import JWT, jwt_required, current_identity
+#from flask_jwt import JWT, jwt_required, current_identity
 from datetime import timedelta
-# from models import db, Student
-
+from models import db, Student
 
 ''' Begin boilerplate code '''
 def create_app():
@@ -25,18 +24,15 @@ app.app_context().push()
 
 
 def authenticate(sId, password):
-    # search for the specified user
-    # student = Student.query.filter_by(studentId=sId).first()
-    # if user is found and password matches
-    # if student and student.check_password(password):
-    # return student
-    return
+    student = Student.query.filter_by(studentId=sId).first()
+    if student and student.check_password(password):
+        return
 
 
 # Payload is a dictionary which is passed to the function by Flask JWT
 def identity(payload):
-  #return Student.query.get(payload['identity'])
-    return
+    return Student.query.get(payload['identity'])
+
 
 # jwt = JWT(app, authenticate, identity)
 
