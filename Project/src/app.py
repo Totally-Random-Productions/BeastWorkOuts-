@@ -1,16 +1,19 @@
 from flask import Flask, render_template
 # from flask_jwt import JWT, jwt_required, current_identity
 from datetime import timedelta
-# from models import db, Student
+
+from models import db, Student, Exercise
 
 
 ''' Begin boilerplate code '''
+
+
 def create_app():
     app = Flask(__name__)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
     app.config['SECRET_KEY'] = "MYSECRET"
-    app.config['JWT_EXPIRATION_DELTA'] = timedelta(days = 7)
-    # db.init_app(app)
+    app.config['JWT_EXPIRATION_DELTA'] = timedelta(days=7)
+    db.init_app(app)
     return app
 
 
@@ -19,7 +22,6 @@ app = create_app()
 app.app_context().push()
 # db.create_all(app=app)
 ''' End Boilerplate Code '''
-
 
 '''Set up JWT here '''
 
@@ -35,8 +37,9 @@ def authenticate(sId, password):
 
 # Payload is a dictionary which is passed to the function by Flask JWT
 def identity(payload):
-  #return Student.query.get(payload['identity'])
+    # return Student.query.get(payload['identity'])
     return
+
 
 # jwt = JWT(app, authenticate, identity)
 
@@ -67,4 +70,3 @@ def signup():
 @app.route("/workouts")
 def workouts():
     return render_template("workouts.html")
-
