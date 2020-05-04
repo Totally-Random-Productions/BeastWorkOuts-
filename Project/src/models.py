@@ -32,17 +32,19 @@ class Student(db.Model):
 
 # Model for exercise link
 class Exercise(db.Model):
-    exerciseName = db.Column(db.String(120), primary_key=True)
-    equipment = db.Column(db.String(120), unique=True, nullable=False)
+    exerciseId = db.Column(db.Integer, primary_key=True)
+    exerciseName = db.Column(db.String(120), nullable=False)
+    equipment = db.Column(db.String(120), nullable=False)
     exerciseType = db.Column(db.String(120), nullable=False)
-    MajorMuscle = db.Column(db.String(120), nullable=False)
-    MinorMuscle = db.Column(db.String(120), nullable=False)
-    example = db.Column(db.String(200), nullable=False)
-    notes = db.Column(db.String(120), nullable=False)
-    mods = db.Column(db.String(120), nullable=False)
+    majorMuscle = db.Column(db.String(120), nullable=False)
+    minorMuscle = db.Column(db.String(120), nullable=True)
+    example = db.Column(db.String(200), nullable=True)
+    notes = db.Column(db.String(120), nullable=True)
+    mods = db.Column(db.String(120), nullable=True)
 
     def toDict(self):
         return {
+            "id": self.exerciseId,
             "Exercise": self.exerciseName,
             "Equipment": self.equipment,
             "Exercise Type": self.exerciseType,
