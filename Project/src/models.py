@@ -37,8 +37,7 @@ class Exercise(db.Model):
     exerciseType = db.Column(db.String(120), nullable=False)
     MajorMuscle = db.Column(db.String(120), nullable=False)
     MinorMuscle = db.Column(db.String(120), nullable=False)
-    example = db.Column(db.String(120), nullable=False)  # not too sure about this
-    # Me neither, it was raising an exception, a string would work just fine
+    example = db.Column(db.String(200), nullable=False)
     notes = db.Column(db.String(120), nullable=False)
     mods = db.Column(db.String(120), nullable=False)
 
