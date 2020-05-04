@@ -1,9 +1,9 @@
 <!--TODO: Everything lol -->
 
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" class="no_background_image">
 <head>
-	<title> Workout Programs | Best Fit </title>
+	<title> About Us | Best Fit </title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -21,14 +21,14 @@
 </style>
 
 </head>
-<body>
+<body class=" landing">
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">Best Fit</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="/">Home</a></li>
+      <li class="active"><a href="home">Home</a></li>
       <li><a href="workouts">Workouts and Programs</a></li>
       <li><a href="aboutus">About Us</a></li>
 	  <!--
@@ -48,38 +48,11 @@
 
 <br>
 
-<h1> Workouts and Programs
+<h1> About Us
     <form class="search-wrapper cf" style="float:right">
         <input type="text" placeholder="Search here ..." required style="box-shadow: none;">
         <button type="submit">Search</button>
     </form></h1>
-    <p>
-       <div>
-        <table>
-          <thead>
-                <tr>
-                    <th>Exercise</th>
-                    <th>Equipment</th>
-                    <th>Exercise Type</th>
-                    <th>Major Muscle</th>
-                    <th>Minor Muscle</th>
-                </tr>
-            </thead>
-          <tbody>
-                {% for e in exerciselist %}
-                <tr>
-                    <td>{{e.exerciseName}}</td>
-                    <td>{{e.equipment}}</td>
-                    <td>{{e.exerciseType}}</td>
-                    <td>{{e.majorMuscle}}</td>
-                    <td>{{e.minorMuscle}}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-      </div>
-
-    </p>
 
 </body>
 </html>
