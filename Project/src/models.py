@@ -1,7 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
-db = sqlalchemy()
+db = SQLAlchemy()
 
 
 # Model for Student
@@ -37,7 +37,8 @@ class Exercise(db.Model):
     exerciseType = db.Column(db.String(120), nullable=False)
     MajorMuscle = db.Column(db.String(120), nullable=False)
     MinorMuscle = db.Column(db.String(120), nullable=False)
-    example = db.URLField(max_length=200, nullable=False)  # not too sure about this
+    example = db.Column(db.String(120), nullable=False)  # not too sure about this
+    # Me neither, it was raising an exception, a string would work just fine
     notes = db.Column(db.String(120), nullable=False)
     mods = db.Column(db.String(120), nullable=False)
 

@@ -9,7 +9,7 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
     app.config['SECRET_KEY'] = "MYSECRET"
     app.config['JWT_EXPIRATION_DELTA'] = timedelta(days = 7)
-    # db.init_app(app)
+    db.init_app(app)
     return app
 
 
