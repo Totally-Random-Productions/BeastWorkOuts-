@@ -17,8 +17,6 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
- /* Moved to main.css*/
-
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -40,7 +38,8 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
-.flip-card:hover .flip-card-inner {
+
+.flip-card:active .flip-card-inner {
   transform: rotateY(180deg);
 }
 
@@ -72,7 +71,31 @@ body {
    flex-direction: row;
 }
 
+.img_name {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(29, 106, 154, 0.72);
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+  /* transition effect. not necessary */
+  transition: opacity .2s, visibility .2s;
+}
+
+.flip-card:hover .img_name {
+  visibility: visible;
+  opacity: 1;
+}
+
 </style>
+
+<script>
+<!--JAVASCRIPT FLIP ON CLICK CODE -->
+
+</script>
 
 </head>
 <body>
@@ -118,6 +141,10 @@ body {
             <div class="flip-card-inner">
                 <div class="flip-card-front">
                     <img src= {{e.example}} alt="Workout Demo" style="width:300px;height:300px;">
+                    <p class="img_name"  style="font-size:15px">
+                    <br>
+                        {{e.exerciseName}}
+                    </p>
                 </div>
                 <div class="flip-card-back">
                     <br>
