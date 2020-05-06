@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="../static/css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	
+
 	<!--NAVIGATION SEARCH ICON CODE -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -25,8 +25,8 @@ body {
 
 .flip-card {
   background-color: transparent;
-  width: 300px;
-  height: 300px;
+  width: 320px;
+  height: 320px;
   padding: 10px;
 }
 
@@ -64,10 +64,12 @@ body {
 }
 
 .card-container {
-display: flex;
-flex-wrap: wrap;
-padding: 5px;
-background-color: black;
+   display: flex;
+   flex-wrap: wrap;
+   padding: 5px;
+   background-color: white;
+   justify-content: center;
+   flex-direction: row;
 }
 
 </style>
@@ -108,20 +110,26 @@ background-color: black;
 
 <!-- WORKOUT CARDS -->
     <p>
-        <div class="card-container">
+        <br>
+        <br>
+        <div class="card-container" >
         {% for e in exerciselist %}
         <div class="flip-card">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
-                    <img src= {{e.example}} alt="Workout Demo" style="width:280px;height:280px;">
+                    <img src= {{e.example}} alt="Workout Demo" style="width:300px;height:300px;">
                 </div>
                 <div class="flip-card-back">
+                    <br>
                     <h1>{{e.exerciseName}}</h1>
-
-                    <p>{{e.equipment}}</p>
-                    <p>{{e.exerciseType}}</p>
-                    <p>{{e.majorMuscle}}</p>
-                    <p>{{e.minorMuscle}}</p>
+                    <br>
+                    <p> Equipment: {{e.equipment}}</p>
+                    <br>
+                    <p>Exercise Type: {{e.exerciseType}}</p>
+                    <br>
+                    <p>Major Muscle: {{e.majorMuscle}}</p>
+                    <br>
+                    <p>Minor Muscle: {{e.minorMuscle}}</p>
 
                 </div>
             </div>
