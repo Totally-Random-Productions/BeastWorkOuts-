@@ -54,3 +54,28 @@ class Exercise(db.Model):
             "Notes": self.notes,
             "Modifications": self.mods
         }
+
+
+#Workouts Routine Model
+
+'''
+class WorkoutRoutine(db.Model):
+    workout1 = db.Column(db.String(120), nullable=False)
+    workout2 = db.Column(db.String(120), nullable=False)
+    workout3 = db.Column(db.String(120), nullable=False)
+    workout4 = db.Column(db.String(120), nullable=False)
+    workout5 = db.Column(db.String(120), nullable=False)
+    workout6 = db.Column(db.String(120), nullable=False)
+
+    def toDict(self):
+        return {
+            "Workout 1": self.workout1,
+            "Workout 2": self.workout2,
+            "Workout 3": self.workout3,
+            "Workout 4": self.workout4,
+            "Workout 5": self.workout5,
+            "Workout 6": self.workout6,
+        }
+
+
+'''

@@ -90,6 +90,11 @@ body {
   opacity: 1;
 }
 
+.radioButton input{
+    position:absolute;
+    z-index:999;
+}
+
 </style>
 
 </head>
@@ -137,11 +142,14 @@ body {
         <div class="flip-card">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
-                    <img src= {{e.example}} alt="Workout Demo" style="width:300px;height:300px;">
-                    <p class="img_name"  style="font-size:25px">
-                    <br>
-                        {{e.exerciseName}}
-                    </p>
+                    <div class="radioButton">
+                        <input id="workoutID" type="radio" name="workoutName" value="workout" />
+                        <img src= {{e.example}} alt="Workout Demo" style="width:300px;height:300px;">
+                        <p class="img_name"  style="font-size:25px">
+                        <br>
+                            {{e.exerciseName}}
+                        </p>
+                    </div>
                 </div>
                 <div class="flip-card-back">
                     <br>
