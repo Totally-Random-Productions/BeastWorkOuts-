@@ -1,7 +1,8 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_jwt import JWT, jwt_required, current_identity
 from datetime import timedelta
 from models import db, Student, Exercise
+from sqlalchemy.exc import IntegrityError
 
 ''' Begin boilerplate code '''
 
@@ -51,9 +52,14 @@ def home():
     return render_template("home.html")
 
 
+@app.route("/signup")
+def signupPage():
+    return render_template("signup.html")
+
+
 @app.route("/signup", methods=(['POST']))
 def signup():
-    userData = request.get_json()  # has to userData from the db to compare
+    '''userData = request.get_json()  # has to userData from the db to compare
     newUser = Student(userID=userData['Student ID'], email=userData(['Email']))  # to create a Student object
     newUser.set_password(userData['password'])  # to set the password
     try:
@@ -63,7 +69,21 @@ def signup():
         db.session.rollback()
         return 'Username or Email already exists'
 
-    return render_template("workouts.html")
+    return render_template("workouts.html")'''
+    if request.method == 'POST':
+        userData = request.form.to_dict()
+        print(userData)
+        if userData:
+            newUser = Student(studentId=userData['studentid'], email="email")  # to create a Student object
+            newUser.set_password(userData['password'])  # to set the password
+            try:
+                db.session.add(newUser)
+                db.session.commit()
+            except IntegrityError:
+                db.session.rollback()
+                return 'Username or Email already exists'
+        return 200
+    return
 
 
 @app.route("/login", methods=(['GET', 'POST'])) #this is temporary

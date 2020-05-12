@@ -22,35 +22,35 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-                <form class="login100-form validate-form" action="signup" method="POST" name="myForm">
+                <form class="login100-form validate-form" action="/signup" method="POST">
 					<span class="login100-form-title">
 						Sign Up
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid Student ID is required: 123456789">
-						<input class="input100" type="text" name="studentid" placeholder="Student ID">
+						<input class="input100" type="text" id="studentid" name="studentid" placeholder="Student ID">
 						<span class="focus-input100"></span>
 					</div>
 
                     	<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="email" placeholder="Email Address">
+						<input class="input100" type="text" id="email" name="email" placeholder="Email Address">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" >
-						<input class="input100" type="password" name="pass" placeholder="Password">
+						<input class="input100" type="password" id="password" name="pass" placeholder="Password">
 						<span class="focus-input100"></span>
 					</div>
 
                     <div class="wrap-input100 validate-input" >
-						<input class="input100" type="confirm-password" name="cpass" placeholder="Confirm Password">
+						<input class="input100" type="confirm-password" id="confirm" name="cpass" placeholder="Confirm Password">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="btn" type=button name="submit_id" id="btn_id" value="Submit" onclick="submitform()">
+						<input class="btn" type=submit name="submit_id" id="btn_id" value="Submit" onclick="submitform()">
 							Sign Up
-						</button>
+						</input>
 					</div>
 				</form>
 			</div>
