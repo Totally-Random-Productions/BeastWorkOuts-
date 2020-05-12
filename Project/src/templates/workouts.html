@@ -77,8 +77,8 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(29, 106, 154, 0.72);
-  color: #fff;
+  background: rgba(170, 170, 170, .67);
+  color: black;
   visibility: hidden;
   opacity: 0;
   /* transition effect. not necessary */
@@ -90,12 +90,12 @@ body {
   opacity: 1;
 }
 
+.radioButton input{
+    position:absolute;
+    z-index:999;
+}
+
 </style>
-
-<script>
-<!--JAVASCRIPT FLIP ON CLICK CODE -->
-
-</script>
 
 </head>
 <body>
@@ -126,9 +126,11 @@ body {
 <br>
 
 <h1> Workouts and Programs
+
     <form class="search-wrapper cf" style="float:right">
         <input type="text" placeholder="Search here ..." required style="box-shadow: none;">
         <button type="submit">Search</button>
+
     </form></h1>
 
 <!-- WORKOUT CARDS -->
@@ -140,11 +142,14 @@ body {
         <div class="flip-card">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
-                    <img src= {{e.example}} alt="Workout Demo" style="width:300px;height:300px;">
-                    <p class="img_name"  style="font-size:15px">
-                    <br>
-                        {{e.exerciseName}}
-                    </p>
+                    <div class="radioButton">
+                        <input id="workoutID" type="radio" name="workoutName" value="workout" />
+                        <img src= {{e.example}} alt="Workout Demo" style="width:300px;height:300px;">
+                        <p class="img_name"  style="font-size:25px">
+                        <br>
+                            {{e.exerciseName}}
+                        </p>
+                    </div>
                 </div>
                 <div class="flip-card-back">
                     <br>
@@ -164,6 +169,6 @@ body {
         {% endfor %}
         </div>
     </p>
-
+    <script src="../static/js/test.js"></script>
 </body>
 </html>
