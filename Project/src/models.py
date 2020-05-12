@@ -59,7 +59,7 @@ class Exercise(db.Model):
 class Routine(db.Model):
     routineID = db.Column(db.Integer, primary_key=True)
     routineName = db.Column(db.String(50), nullable=False)
-    exerciseID = db.Column(db.Integer, db.ForeignKey('id'), nullable=False)
+    exerciseID = db.Column(db.Integer, db.ForeignKey('exerciseId'), nullable=False)
 
     def toDict(self):
         return {
