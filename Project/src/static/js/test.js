@@ -10,7 +10,7 @@ searchBar.addEventListener('keyup', (e) => {
             exercise.e.equipment.toLowerCase().includes(searchString) ||
             exercise.e.exerciseType.toLowerCase().includes(searchString) ||
             exercise.e.majorMuscle.toLowerCase().includes(searchString) ||
-            exercise.e.minorMuscle.toLowerCase().includes(searchString) ||
+            exercise.e.minorMuscle.toLowerCase().includes(searchString)
         );
     });
     displayExercises(filteredExercises);

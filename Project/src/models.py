@@ -37,10 +37,10 @@ class Exercise(db.Model):
     equipment = db.Column(db.String(120), nullable=False)
     exerciseType = db.Column(db.String(120), nullable=False)
     majorMuscle = db.Column(db.String(120), nullable=False)
-    minorMuscle = db.Column(db.String(120), nullable=True)
-    example = db.Column(db.String(200), nullable=True)
-    notes = db.Column(db.String(120), nullable=True)
-    mods = db.Column(db.String(120), nullable=True)
+    minorMuscle = db.Column(db.String(120), nullable=False)
+    example = db.Column(db.String(200), nullable=False)
+    notes = db.Column(db.String(120), nullable=False)
+    mods = db.Column(db.String(120), nullable=False)
 
     def toDict(self):
         return {
@@ -56,26 +56,14 @@ class Exercise(db.Model):
         }
 
 
-#Workouts Routine Model
-
-'''
-class WorkoutRoutine(db.Model):
-    workout1 = db.Column(db.String(120), nullable=False)
-    workout2 = db.Column(db.String(120), nullable=False)
-    workout3 = db.Column(db.String(120), nullable=False)
-    workout4 = db.Column(db.String(120), nullable=False)
-    workout5 = db.Column(db.String(120), nullable=False)
-    workout6 = db.Column(db.String(120), nullable=False)
+class Routine(db.Model):
+    routineID = db.Column(db.Integer, primary_key=True)
+    routineName = db.Column(db.String(50), nullable=False)
+    exerciseID = db.Column(db.Integer, db.ForeignKey('exerciseId'), nullable=False)
 
     def toDict(self):
         return {
-            "Workout 1": self.workout1,
-            "Workout 2": self.workout2,
-            "Workout 3": self.workout3,
-            "Workout 4": self.workout4,
-            "Workout 5": self.workout5,
-            "Workout 6": self.workout6,
+            "Routine ID": self.routineID,
+            "Routine Name": self.routineName,
+            "Exercise ID": self.exerciseId
         }
-
-
-'''
