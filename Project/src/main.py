@@ -1,8 +1,7 @@
 from flask import Flask, render_template
-#from flask_jwt import JWT, jwt_required, current_identity
+from flask_jwt import JWT, jwt_required, current_identity
 from datetime import timedelta
 from models import db, Student, Exercise
-
 
 ''' Begin boilerplate code '''
 
@@ -11,7 +10,7 @@ def create_app():
     app = Flask(__name__)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
     app.config['SECRET_KEY'] = "MYSECRET"
-    app.config['JWT_EXPIRATION_DELTA'] = timedelta(days = 7)
+    app.config['JWT_EXPIRATION_DELTA'] = timedelta(days=7)
     app.config['JWT_EXPIRATION_DELTA'] = timedelta(days=7)
     db.init_app(app)
     return app
@@ -36,11 +35,8 @@ def authenticate(sId, password):
 def identity(payload):
     return Student.query.get(payload['identity'])
 
-    # return Student.query.get(payload['identity'])
-    return
 
-# jwt = JWT(app, authenticate, identity)
-
+jwt = JWT(app, authenticate, identity)
 
 ''' End JWT Setup '''
 
@@ -55,17 +51,45 @@ def home():
     return render_template("home.html")
 
 
-@app.route("/login")
-def login():
-    return render_template("login.html")
-
-
-@app.route("/signup")
+@app.route("/signup", methods=(['POST']))
 def signup():
-    return render_template("signup.html")
+    userData = request.get_json()  # has to userData from the db to compare
+    newUser = Student(userID=userData['Student ID'], email=userData(['Email']))  # to create a Student object
+    newUser.set_password(userData['password'])  # to set the password
+    try:
+        db.session.add(newUser)
+        db.session.commit()
+    except IntegrityError:
+        db.session.rollback()
+        return 'Username or Email already exists'
+
+    return render_template("workouts.html")
 
 
-@app.route("/workouts", methods=['GET'])
+@app.route("/login", methods=(['GET', 'POST'])) #this is temporary
+def login():
+    if request.method == 'GET':
+        return render_template('login.html')
+
+    username = request.form['Student ID']
+
+    password = request.form['password']
+
+    registered_user = User.query.filter_by(username=username, password=password).first()
+
+    if registered_user is None:
+        flash('Username or Password is invalid')
+
+        return render_template('signup.html')
+
+    login_user(registered_user)
+
+    flash('Logged in successfully')
+
+    return render_template("workouts.html")
+
+
+@app.route("/workouts", methods=(['GET']))
 def workouts():
     asgs = Exercise.query.all()
     return render_template("workouts.html", exerciselist=asgs)
