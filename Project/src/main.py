@@ -113,3 +113,9 @@ def login():
 def workouts():
     asgs = Exercise.query.all()
     return render_template("workouts.html", exerciselist=asgs)
+
+
+@app.route("/routine", methods=(['GET']))
+def routine():
+    asgs = Exercise.query.all()
+    return render_template("routine.html", exerciselist=asgs)

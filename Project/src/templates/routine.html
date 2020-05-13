@@ -81,18 +81,92 @@
           padding: 16px 20px;
           border: none;
           cursor: pointer;
-          width: 100%;
+          width: 13%;
           margin-bottom:10px;
           opacity: 0.8;
+          margin: auto;
+
         }
 
         /* Add a red background color to the cancel button */
         .form-container .cancel {
+          width:13%;
           background-color: red;
         }
 
         /* Add some hover effects to buttons */
         .form-container .btn:hover, .open-button:hover {
+          opacity: 1;
+        }
+
+        /*FLIP CARD CODE STARTS HERE*/
+        .flip-card {
+          background-color: transparent;
+          width: 320px;
+          height: 320px;
+          padding: 10px;
+        }
+
+        .flip-card-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          transition: transform 0.5s;
+          transform-style: preserve-3d;
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        }
+
+        /*
+        .flip-card:active .flip-card-inner {
+          transform: rotateY(180deg);
+        }*/
+
+        .flip-card-front, .flip-card-back {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+        }
+
+        .flip-card-front {
+          background-color: #bbb;
+          color: black;
+        }
+
+        /*
+        .flip-card-back {
+          background-color: black;
+          color: white;
+          transform: rotateY(180deg);
+        } */
+
+        .card-container {
+           display: flex;
+           flex-wrap: wrap;
+           padding: 5px;
+           background-color: white;
+           justify-content: center;
+           flex-direction: row;
+        }
+
+        .img_name {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: rgba(170, 170, 170, .67);
+          color: black;
+          visibility: hidden;
+          opacity: 0;
+          /* transition effect. not necessary */
+          transition: opacity .2s, visibility .2s;
+        }
+
+        .flip-card:hover .img_name {
+          visibility: visible;
           opacity: 1;
         }
     </style>
@@ -108,6 +182,7 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="/">Home</a></li>
       <li><a href="workouts">Workouts and Programs</a></li>
+      <li><a href="routine">Workout Routines</a></li>
       <li><a href="aboutus">About Us</a></li>
 	  <!--
         <li>
@@ -141,13 +216,51 @@
     </p>
 
 </h1>
+<br>
 
-<div class="form-popup" id="myForm" style="width:95%;">
+<div class="form-popup" id="myForm" style="width:90%;">
+
   <form action="/action_page.php" class="form-container" >
     <h2 style="text-align: center">New Workout Routine</h2>
 
-    <label for="routineID"><b>Routine ID</b></label>
-    <input type="text" placeholder="Enter Routine ID" name="routineID" required>
+    <!-- WORKOUT CARDS -->
+    <p>
+        <br>
+        <br>
+        <div class="card-container" >
+        {% for e in exerciselist %}
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <!--
+                    <div class="checkboxButton">
+                        <input id="workoutID" type="checkbox" name="workoutName" value="workout" /> -->
+                        <img src= {{e.example}} alt="Workout Demo" style="width:300px;height:300px;">
+                        <p class="img_name"  style="font-size:25px">
+                        <br>
+                            {{e.exerciseName}}
+                        </p>
+                <!--
+                    </div> -->
+                </div>
+                <!--
+                <div class="flip-card-back">
+                    <br>
+                    <h1>{{e.exerciseName}}</h1>
+                    <br>
+                    <p> Equipment: {{e.equipment}}</p>
+                    <br>
+                    <p>Exercise Type: {{e.exerciseType}}</p>
+                    <br>
+                    <p>Major Muscle: {{e.majorMuscle}}</p>
+                    <br>
+                    <p>Minor Muscle: {{e.minorMuscle}}</p>
+                </div> -->
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+    </p>
 
     <label for="reps"><b>Reps</b></label>
     <input type="text" placeholder="Enter the amount of reps" name="reps" required>
@@ -155,7 +268,7 @@
     <label for="sets"><b>Sets</b></label>
     <input type="text" placeholder="Enter the amount of sets" name="sets" required>
 
-    <button type="submit" class="btn">Submit</button>
+    <button type="submit" class="btn" >Submit</button> <br>
     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
   </form>
 </div>
