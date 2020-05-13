@@ -32,13 +32,12 @@ with open('exerciseList.csv') as workouts:
     itercsv = iter(readCSV)
     next(itercsv)
     for row in itercsv:
-
-        #Removes the name of the image and leaves url only
+        # Removes the name of the image and leaves url only
         start = "("
         end = ")"
         example = row[5]
         url = example[example.find(start) + len(start):example.rfind(end)]
-        #print(url)
+        # print(url)
 
         # print(row) For testing, remove when cleaning
         workoutDetails = Exercise(exerciseName=row[0], equipment=row[1],

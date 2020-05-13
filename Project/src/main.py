@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_jwt import JWT, jwt_required, current_identity
 from datetime import timedelta
 from models import db, Student, Exercise
@@ -8,7 +8,7 @@ from sqlalchemy.exc import IntegrityError
 
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__, template_folder="templates")
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
     app.config['SECRET_KEY'] = "MYSECRET"
     app.config['JWT_EXPIRATION_DELTA'] = timedelta(days=7)
@@ -59,26 +59,16 @@ def signupPage():
 
 @app.route("/signup", methods=(['POST']))
 def signup():
-    '''userData = request.get_json()  # has to userData from the db to compare
-    newUser = Student(userID=userData['Student ID'], email=userData(['Email']))  # to create a Student object
-    newUser.set_password(userData['password'])  # to set the password
-    try:
-        db.session.add(newUser)
-        db.session.commit()
-    except IntegrityError:
-        db.session.rollback()
-        return 'Username or Email already exists'
-
-    return render_template("workouts.html")'''
     if request.method == 'POST':
         userData = request.form.to_dict()
         print(userData)
         if userData:
-            newUser = Student(studentId=userData['studentid'], email="email")  # to create a Student object
-            newUser.set_password(userData['password'])  # to set the password
+            newUser = Student(studentId=userData["studentid"], email="email")  # to create a Student object
+            newUser.set_password(userData['pass'])  # to set the password
             try:
                 db.session.add(newUser)
                 db.session.commit()
+                return redirect(url_for('workout'))
             except IntegrityError:
                 db.session.rollback()
                 return 'Username or Email already exists'
@@ -86,30 +76,33 @@ def signup():
     return
 
 
-@app.route("/login", methods=(['GET', 'POST'])) #this is temporary
+@app.route("/login", methods=(['GET', 'POST']))
 def login():
+    userData = request.form.to_dict()
+
     if request.method == 'GET':
         return render_template('login.html')
 
-    username = request.form['Student ID']
+    elif request.method == 'POST':
+        username = request.form['studentid']
+        password = request.form['pass']
+        userData = Student.query.filter_by(studentId=username, password=password).first()
 
-    password = request.form['password']
-
-    registered_user = User.query.filter_by(username=username, password=password).first()
-
-    if registered_user is None:
+    if userData is None:
         flash('Username or Password is invalid')
+        return redirect(url_for('signup'))
 
-        return render_template('signup.html')
-
-    login_user(registered_user)
-
+    login_user(userData)
     flash('Logged in successfully')
-
-    return render_template("workouts.html")
+    return redirect(url_for('workouts'))
 
 
 @app.route("/workouts", methods=(['GET']))
 def workouts():
     asgs = Exercise.query.all()
     return render_template("workouts.html", exerciselist=asgs)
+
+
+@app.route("/workouts", methods=(['GET']))
+def routine():
+    return redirect(url_for('routine'))

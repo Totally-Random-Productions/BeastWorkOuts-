@@ -1,7 +1,7 @@
 <!--TODO: Change colours, link forms-->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
 	<title> Login | Best Fit </title>
 	<meta charset="UTF-8">
@@ -19,7 +19,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-                <form class="login100-form validate-form">
+                <form class="login100-form validate-form" action="/login" method = "POST">
 					<span class="login100-form-title">
 						Login
 					</span>
@@ -44,13 +44,12 @@
 					</div>
 					
 					<div class="container-login100-form-btn">
-						<button class="btn">
+						<input class="btn" type=submit name="login_id" id="btn_id" value="Login" onclick="Loginform()" >
 							Login
-						</button>
+						</input>
 					</div>
-
 					<div class="text-center p-t-12">
-						<a class="txt2" href="signup.html">
+						<a class="txt2" href="/signup.html">
 							Create your Account
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>

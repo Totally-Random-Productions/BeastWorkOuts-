@@ -14,7 +14,7 @@ class Student(db.Model):
         return {
             "Student Id": self.studentId,
             "Email": self.email,
-            "Password": self.password
+            "password": self.password
         }
 
     # hashes the password parameter and stores it in the object
