@@ -1,10 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Create a Routine</title>
+    <title> Workout Routines | Best Fit </title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--NAV BAR STYLE SHEET -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+	<!--NAVIGATION SEARCH ICON CODE -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        .openButton {
+              border: none;
+              background-color: inherit;
+              padding: 14px 14px;
+              font-size: 16px;
+              cursor: pointer;
+              display: inline-block;
+              border-radius: 10px;
+            }
+
+        .openButton:hover {background: #eee;}
+
+        /* Button used to open the contact form - fixed at the bottom of the page */
+        .open-button {
+          background-color: #555;
+          color: white;
+          padding: 16px 20px;
+          border: none;
+          cursor: pointer;
+          opacity: 0.8;
+          position: absolute;
+          margin: auto;
+
+        }
+
+        /* The popup form - hidden by default */
+        .form-popup {
+          display: none;
+          /*position: fixed;*/
+          position: absolute;
+          /*bottom: 0;*/
+          right: 15px;
+          border: 3px solid #f1f1f1;
+          z-index: 9;
+          margin-left: auto;
+          margin-right: auto;
+          text-align: left;
+        }
+
+        /* Add styles to the form container */
+        .form-container {
+          max-width: 300px;
+          padding: 20px;
+          background-color: white;
+        }
+
+        /* Full-width input fields */
+        .form-container input[type=text], .form-container input[type=password] {
+          width: 100%;
+          padding: 15px;
+          margin: 5px 0 22px 0;
+          border: none;
+          background: #f1f1f1;
+        }
+
+        /* When the inputs get focus, do something */
+        .form-container input[type=text]:focus, .form-container input[type=password]:focus {
+          background-color: #ddd;
+          outline: none;
+        }
+
+        /* Set a style for the submit/login button */
+        .form-container .btn {
+          background-color: #4CAF50;
+          color: white;
+          padding: 16px 20px;
+          border: none;
+          cursor: pointer;
+          width: 100%;
+          margin-bottom:10px;
+          opacity: 0.8;
+        }
+
+        /* Add a red background color to the cancel button */
+        .form-container .cancel {
+          background-color: red;
+        }
+
+        /* Add some hover effects to buttons */
+        .form-container .btn:hover, .open-button:hover {
+          opacity: 1;
+        }
+    </style>
+
 </head>
+
 <body>
- <p> Hello</p>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Best Fit</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/">Home</a></li>
+      <li><a href="workouts">Workouts and Programs</a></li>
+      <li><a href="aboutus">About Us</a></li>
+	  <!--
+        <li>
+    <form class="newsearch" style="float:right">
+        <input type="text" placeholder="Search workouts ...">
+        <button type="submit">Search</button>
+    </form></li> -->
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a href="signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+		<li><a href="#" style="font-size:15px"><span class="fa fa-fw fa-search"></span> Search</a> </li> <!--New Search Bar Code -->
+    </ul>
+  </div>
+</nav>
+
+<br>
+
+<h1> Workout Routines
+
+    <form class="search-wrapper cf" style="float:right">
+        <input type="text" placeholder="Search here ..." required style="box-shadow: none;">
+        <button type="submit">Search</button>
+    </form>
+
+    <p style="text-align: center">
+        <br> <br>
+        <!--<button class="linkBtn" onclick="window.location.href='routine.html';"> Create a New Workout Routine </button> -->
+        <!--<a href="routine.html" class="button">Click Here</a> -->
+        <button class="openButton" onclick="openForm()">Create a New Workout Routine</button>
+    </p>
+
+</h1>
+
+<div class="form-popup" id="myForm">
+  <form action="/action_page.php" class="form-container" >
+    <h2 style="text-align: center">New Workout Routine</h2>
+
+    <label for="routineID"><b>Routine ID</b></label>
+    <input type="text" placeholder="Enter Routine ID" name="routineID" required>
+
+    <label for="reps"><b>Reps</b></label>
+    <input type="text" placeholder="Enter the amount of reps" name="reps" required>
+
+    <label for="sets"><b>Sets</b></label>
+    <input type="text" placeholder="Enter the amount of sets" name="sets" required>
+
+    <button type="submit" class="btn">Submit</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+
 </body>
 </html>
