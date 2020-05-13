@@ -60,10 +60,14 @@ class Routine(db.Model):
     routineID = db.Column(db.Integer, primary_key=True)
     routineName = db.Column(db.String(50), nullable=False)
     exerciseID = db.Column(db.Integer, db.ForeignKey('exerciseId'), nullable=False)
+    reps = db.Column(db.Integer, nullable=False)
+    sets = db.Column(db.Integer, nullable=False)
 
     def toDict(self):
         return {
             "Routine ID": self.routineID,
             "Routine Name": self.routineName,
-            "Exercise ID": self.exerciseId
+            "Exercise ID": self.exerciseId,
+            "Reps": self.reps,
+            "Sets": self.sets
         }
