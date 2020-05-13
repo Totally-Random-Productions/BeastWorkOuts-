@@ -1,4 +1,12 @@
+<<<<<<< Updated upstream
 from flask import Flask, render_template, request, redirect, url_for, flash
+=======
+<<<<<<< Updated upstream
+from flask import Flask, render_template, request
+=======
+from flask import Flask, render_template, request, redirect, url_for, flash
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 from flask_jwt import JWT, jwt_required, current_identity
 from datetime import timedelta
 from models import db, Student, Exercise
@@ -55,6 +63,7 @@ def home():
 @app.route("/signup")
 def signupPage():
     return render_template("signup.html")
+<<<<<<< Updated upstream
 
 
 @app.route("/signup", methods=(['POST']))
@@ -74,8 +83,32 @@ def signup():
                 return 'Username or Email already exists'
         return 200
     return
+=======
+
+>>>>>>> Stashed changes
+
+<<<<<<< Updated upstream
+=======
+@app.route("/signup", methods=(['POST']))
+def signup():
+    if request.method == 'POST':
+        userData = request.form.to_dict()
+        print(userData)
+        if userData:
+            newUser = Student(studentId=userData["studentid"], email="email")  # to create a Student object
+            newUser.set_password(userData['pass'])  # to set the password
+            try:
+                db.session.add(newUser)
+                db.session.commit()
+                return redirect(url_for('workout'))
+            except IntegrityError:
+                db.session.rollback()
+                return 'Username or Email already exists'
+        return 200
+    return
 
 
+>>>>>>> Stashed changes
 @app.route("/login", methods=(['GET', 'POST']))
 def login():
     userData = request.form.to_dict()
