@@ -284,9 +284,7 @@
 
 <div class="content">
   <h1>Your Workout Routines</h1>
-    <ul class="content-list"> </ul>
-
-
+    <div class="card-container"> </div>
 </div>
 
 <script>
@@ -302,17 +300,26 @@ function closeForm() {
 $(document).ready(function(){
 
     $('.btn').click(function(){
-     $('input[name=workoutName]:checked').parent().hide();
-    var list = $('.content ul');
+     $('input[name=workoutName]:checked').parent().show();
+
+    var list = $('.content div');
     list.empty();
+
     $('input[name=workoutName]:checked').each(function(){
-      var item = $('<li>');
-      item.html($(this).val());
+
+      var item = $('<div>');
+      item = $(this).parent().clone();
       list.append(item);
+
+      /*var workouts = $('.flip-card').contents();
+       //workouts.html($(this).val());
+       list.append(workouts);*/
+
     });
 
   });
 });
+
 </script>
 
 </body>
