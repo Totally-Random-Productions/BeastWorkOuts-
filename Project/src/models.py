@@ -3,15 +3,16 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
 
-
 # Model for Student
 class Student(db.Model):
-    studentId = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    studentId = db.Column(db.Integer, nullable=False, unique=True )
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
 
     def toDict(self):
         return {
+            "id": self.id,
             "Student Id": self.studentId,
             "Email": self.email,
             "password": self.password
@@ -32,7 +33,7 @@ class Student(db.Model):
 
 # Model for exercise link
 class Exercise(db.Model):
-    exerciseId = db.Column(db.Integer, primary_key=True)
+    exerciseID = db.Column(db.Integer, primary_key=True)
     exerciseName = db.Column(db.String(120), nullable=False)
     equipment = db.Column(db.String(120), nullable=False)
     exerciseType = db.Column(db.String(120), nullable=False)
@@ -44,7 +45,7 @@ class Exercise(db.Model):
 
     def toDict(self):
         return {
-            "id": self.exerciseId,
+            "id": self.exerciseID,
             "Exercise": self.exerciseName,
             "Equipment": self.equipment,
             "Exercise Type": self.exerciseType,
@@ -59,15 +60,26 @@ class Exercise(db.Model):
 class Routine(db.Model):
     routineID = db.Column(db.Integer, primary_key=True)
     routineName = db.Column(db.String(50), nullable=False)
-    exerciseID = db.Column(db.Integer, db.ForeignKey('exerciseId'), nullable=False)
-    reps = db.Column(db.Integer, nullable=False)
-    sets = db.Column(db.Integer, nullable=False)
+    userid = db.Column(db.Integer, db.ForeignKey('student.id'))
 
     def toDict(self):
         return {
             "Routine ID": self.routineID,
             "Routine Name": self.routineName,
-            "Exercise ID": self.exerciseId,
+        }
+
+
+class Selected(db.Model):
+    selectedID = db.Column(db.Integer, primary_key=True)
+    rid = db.Column(db.Integer, db.ForeignKey('routine.routineID'))
+    reps = db.Column(db.Integer, nullable=False)
+    sets = db.Column(db.Integer, nullable=False)
+    eid = db.Column(db.Integer, db.ForeignKey('exercise.exerciseID'))
+    exercise = db.relationship('Exercise')
+
+    def toDict(self):
+        return {
+            "Exercise": self.exercise.toDict(),
             "Reps": self.reps,
             "Sets": self.sets
         }

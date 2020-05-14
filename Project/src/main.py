@@ -3,8 +3,7 @@ from flask import Flask, render_template, request
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_jwt import JWT, jwt_required, current_identity
 from datetime import timedelta
-import javascript
-from models import db, Student, Exercise, Routine
+from models import db, Student, Exercise, Routine, Selected
 from sqlalchemy.exc import IntegrityError
 
 ''' Begin boilerplate code '''
@@ -23,7 +22,6 @@ def create_app():
 app = create_app()
 
 app.app_context().push()
-# db.create_all(app=app)
 ''' End Boilerplate Code '''
 
 '''Set up JWT here '''
