@@ -3,6 +3,8 @@ from flask import Flask, render_template, request
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_jwt import JWT, jwt_required, current_identity
 from datetime import timedelta
+
+from flask_login import login_user
 from models import db, Student, Exercise, Routine, Selected
 from sqlalchemy.exc import IntegrityError
 
@@ -30,7 +32,7 @@ app.app_context().push()
 def authenticate(sId, password):
     student = Student.query.filter_by(studentId=sId).first()
     if student and student.check_password(password):
-        return
+        return student
 
 
 # Payload is a dictionary which is passed to the function by Flask JWT
@@ -79,23 +81,19 @@ def signup():
 
 @app.route("/login", methods=(['GET', 'POST']))
 def login():
-    userData = request.form.to_dict()
-
     if request.method == 'GET':
         return render_template('login.html')
 
     elif request.method == 'POST':
-        username = request.form['studentid']
-        password = request.form['pass']
-        userData = Student.query.filter_by(studentId=username, password=password).first()
-
-    if userData is None:
-        flash('Username or Password is invalid')
-        return redirect(url_for('signup'))
-
-    login_user(userData)
-    flash('Logged in successfully')
-    return redirect(url_for('workouts'))
+        userData = request.form.to_dict()
+        print(userData)
+        username = userData['studentid']
+        password = userData['pass']
+        if authenticate(username, password):
+            flash('Logged in successfully')
+            return redirect(url_for('workouts'))
+        flash('Invalid Id or password')
+        return redirect(url_for('login'))
 
 
 @app.route("/workouts", methods=(['GET']))
