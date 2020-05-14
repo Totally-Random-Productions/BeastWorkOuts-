@@ -271,12 +271,6 @@
         </div>
     </p>
 
-    <label for="reps"><b>Reps</b></label>
-    <input type="text" placeholder="Enter the amount of reps" id="reps" name="reps" required>
-
-    <label for="sets"><b>Sets</b></label>
-    <input type="text" placeholder="Enter the amount of sets" id="sets" name="sets" required>
-
     <button type="button" class="btn" >Submit</button> <br>
     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
   </form>
@@ -311,11 +305,11 @@ $(document).ready(function(){
       item = $(this).parents(".flip-card").clone();
       list.append(item);
 
-      var sets = $("#sets").val();
-      var reps = $("#reps").val();
+      var reps = prompt("Please enter the amount of Reps for: ", $(this).val());
+      var sets = prompt("Please enter the amount of Sets for: ", $(this).val());
 
       list.append("Reps: ", reps);
-      list.append("Sets: ", sets);
+      list.append(" Sets: ", sets);
 
     });
 
