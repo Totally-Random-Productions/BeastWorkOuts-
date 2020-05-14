@@ -17,7 +17,7 @@ with open("exerciseList.csv", newline="") as workouts:
     result = csv.DictReader(workouts)
 
     for line in result:
-        
+
         workoutDetails = Exercise(exerciseName=line["exercise"], equipment=line["equipment "],
                                   exerciseType=line["exerciseType"], MajorMuscle=line["MajorMuscle"],
                                   MinorMuscle=line["MinorMuscle"], example=line["example"],
