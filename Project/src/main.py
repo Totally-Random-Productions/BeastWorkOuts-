@@ -64,16 +64,16 @@ def signup():
         userData = request.form.to_dict()
         print(userData)
         if userData:
-            newUser = Student(studentId=userData["studentid"], email="email")  # to create a Student object
+            newUser = Student(studentId=userData["studentid"], email=userData["email"])  # to create a Student object
             newUser.set_password(userData['pass'])  # to set the password
             try:
                 db.session.add(newUser)
                 db.session.commit()
-                return redirect(url_for('workout'))
+                return 200, redirect(url_for('workouts'))
             except IntegrityError:
                 db.session.rollback()
-                return 'Username or Email already exists'
-        return 200
+                return 'Username already exists'
+        return 'Nothing submitted'
     return
 
 
