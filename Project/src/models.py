@@ -1,10 +1,11 @@
+from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
 
 # Model for Student
-class Student(db.Model):
+class Student(db.Model, UserMixin,):
     id = db.Column(db.Integer, primary_key=True)
     studentId = db.Column(db.Integer, nullable=False, unique=True )
     email = db.Column(db.String(120), unique=True, nullable=False)
