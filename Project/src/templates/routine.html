@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<<<<<<< Updated upstream
     <title> Workout Routines | Best Fit </title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -103,8 +102,8 @@
         /*FLIP CARD CODE STARTS HERE*/
         .flip-card {
           background-color: transparent;
-          width: 320px;
-          height: 320px;
+          width: 170px;
+          height: 170px;
           padding: 10px;
         }
 
@@ -170,6 +169,14 @@
           visibility: visible;
           opacity: 1;
         }
+
+        /*CHECK BOX CODE*/
+        .checkboxButton input{
+            position:fixed;
+            left:5px;
+            top:2px;
+            z-index:999;
+        }
     </style>
 
 </head>
@@ -221,8 +228,11 @@
 
 <div class="form-popup" id="myForm" style="width:90%;">
 
-  <div action="/action_page.php" class="form-container" >
+  <form action="/action_page.php" class="form-container" >
     <h2 style="text-align: center">New Workout Routine</h2>
+
+    <br> <br>
+    <h4 style="text-align: center"> <b> Please select the workouts you would like to add to your routine: </b> </h4>
 
     <!-- WORKOUT CARDS -->
     <p>
@@ -233,16 +243,13 @@
         <div class="flip-card">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
-                    <!--
                     <div class="checkboxButton">
-                        <input id="workoutID" type="checkbox" name="workoutName" value="workout" /> -->
-                        <img src= {{e.example}} alt="Workout Demo" style="width:300px;height:300px;">
-                        <p class="img_name"  style="font-size:25px">
+                        <input id="workoutID" type="checkbox" name="workoutName" value="workout" />
+                        <img src= {{e.example}} alt="Workout Demo" style="width:150px;height:150px;">
+                        <p class="img_name"  style="font-size:20px; text-align:center;">
                         <br>
                             {{e.exerciseName}}
                         </p>
-                <!--
-                    </div> -->
                     </div>
                 </div>
                 <!--
@@ -258,7 +265,7 @@
                     <br>
                     <p>Minor Muscle: {{e.minorMuscle}}</p>
                 </div> -->
-            </body>
+            </div>
         </div>
         {% endfor %}
         </div>
@@ -285,12 +292,5 @@ function closeForm() {
 }
 </script>
 
-=======
-    <meta charset="UTF-8">
-    <title>Create a Routine</title>
-</head>
-<body>
- <p> Hello</p>
->>>>>>> Stashed changes
 </body>
 </html>
