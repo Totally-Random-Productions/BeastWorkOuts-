@@ -1,13 +1,21 @@
-# Best Fit
+# Best Fit 
+######Exercise Motivation for the modern youth quarantined. 
 
-To view the website:
-   - Open the ```wsgi.py``` file 
-   - Click 'run'
-   
-If that doesn't work, you're using the wrong IDE 
+Best Fit is a simple web application which allows users to select exercises to simple workout routines. 
+The goal is to let users create personalized workouts that can motivate them to stay mentally and physically fit while 
+staying at home . 
 
-Jk. 
+Click here to check out the deployed website. 
 
-Check the commands.txt folder for possible help. Otherwise ask for help. 
+###Best Fit the Project 
+Best Fit was created as a project for the Web Programming and Technologies I course at the 
+University of the West Indies St Augustine. 
+
+It is a combination of a Flask application server, html, css, and the [] API. 
+
+
+
+
+ 
    
   
