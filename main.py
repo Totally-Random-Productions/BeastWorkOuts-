@@ -102,8 +102,8 @@ def search():
 		entry = request.form.to_dict()
 		key = entry['keyword']
 		print(key)
-		search = "%{}%".format(key)
-		asgs = Exercise.query.filter(Exercise.exerciseName.like(search)).all()
+		searchk = "%{}%".format(key)
+		asgs = Exercise.query.filter(Exercise.exerciseName.like(searchk)).all()
 		if asgs:
 			report = ""
 			return render_template("workouts.html", message=report, exerciselist=asgs)
@@ -113,26 +113,32 @@ def search():
 	return error(), 400
 
 
-@app.route("/workouts", methods=(['GET']))
-@login_required
-def routine2():
-	return redirect(url_for('routine'))
-
-
 @app.route("/routine", methods=(['GET']))
 @login_required
 def routine():
 	asgs = Exercise.query.all()
 	return render_template("routine.html", exerciselist=asgs)
 
+
 @app.route('/routine', methods=['POST'])
 @login_required
 def create_my_routine():
-    data = request.form.to_dict()
-    rec = Routine(routineID=data["Routine ID"], routineName=data["Routine Name"], userid=login_user(Student).id)
-    db.session.add(rec)
-    db.session.commit()
-    return data["Routine Name"] + " created", 201
+	data = request.form.to_dict()
+	print(data)
+	rec = Routine(routineName=data["Routine Name"], userid=login_user(Student).id)
+	try:
+		db.session.add(rec)
+		db.session.commit()
+		add_exercises(data)
+		return data["Routine Name"], 201
+	except IntegrityError:
+		db.session.rollback()
+		return "Routine already exists", 400
+
+
+def add_exercises(data):
+	pass
+
 
 @app.route("/aboutus")
 def aboutus():
