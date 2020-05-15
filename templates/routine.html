@@ -280,14 +280,14 @@
     <h3 id="routineName" name="Routine Name" > </h3>
 
     <div class="card-container" id="currentRoutine" ></div>
-
+</div>
     <p style="text-align: center;">
-        <button type="button" class="deleteButton"  id="delete" style="display:show"> Delete </button>
+        <button type="submit" class="deleteButton"  id="delete" style="display:show"> Delete </button>
         <button type="button" class="updateButton" id="update" style="display:show"> Update </button>
         <button type="button" class="updateButton" id="saveRoutine" style="display:show" onclick="getInfo()"> Save Routine </button>
     </p>
 
-</div>
+
 </form>
 
 <script>
@@ -326,16 +326,14 @@ $(document).ready(function(){
       list.append("Reps: ", reps);
       list.append("\nSets: ", sets);
 
-    /* DELETE CODE */
+
+    /* DELETE CODE
       $(".deleteButton").on("click", function(){
-       /*$(item).closest('div').remove(); THIS REMOVES THE PICTURE ALONE */
-        $(".content").remove();
-
+      $("#workoutID").prop("checked", false);
+      //$(".content").remove();
+            });*/
+        });
     });
-
-
-    });
-  });
 });
 </script>
 </body>
