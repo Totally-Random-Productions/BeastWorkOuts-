@@ -271,7 +271,7 @@
         </div>
     </p>
 
-    <button type="button" class="btn" >Submit</button> <br>
+    <button type="button" class="btn" id="submitRoutine">Submit</button> <br>
     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
   </form>
 </div>
@@ -293,7 +293,7 @@ function closeForm() {
 /*CODE FOR SUBMIT BUTTON */
 $(document).ready(function(){
 
-    $('.btn').click(function(){
+    $('#submitRoutine').click(function(){
      $('input[name=workoutName]:checked').parent().show();
 
     var list = $('.content div');
