@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+	<title> Workout Programs | Best Fit </title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--NAV BAR STYLE SHEET -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+	<!--NAVIGATION SEARCH ICON CODE -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 320px;
+  height: 320px;
+  padding: 10px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+
+.flip-card:active .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.flip-card-back {
+  background-color: black;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.card-container {
+   display: flex;
+   flex-wrap: wrap;
+   padding: 5px;
+   background-color: white;
+   justify-content: center;
+   flex-direction: row;
+}
+
+.img_name {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(170, 170, 170, .67);
+  color: black;
+  visibility: hidden;
+  opacity: 0;
+  /* transition effect. not necessary */
+  transition: opacity .2s, visibility .2s;
+}
+
+.flip-card:hover .img_name {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+.linkBtn {
+  border: none;
+  background-color: inherit;
+  padding: 14px 14px;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 10px;
+  font-size: 17px;
+  color: #666666
+}
+
+.linkBtn:hover {background: #eee;}
+
+</style>
+
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Best Fit</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/">Home</a></li>
+      <li class="active"><a href="workouts">Workouts and Programs</a></li>
+      <li><a href="routine">Workout Routines</a></li>
+      <li><a href="aboutus">About Us</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a href="signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+		<li><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a> </li>
+    </ul>
+  </div>
+</nav>
+
+<br>
+
+<h1> Workouts and Programs
+
+    <form class="search-wrapper cf" style="float:right" action="/workouts" method="POST">
+        <input type="text" name="keyword" placeholder="Search here ..." required style="box-shadow: none;">
+        <button type="submit">Search</button>
+
+    </form> </h1>
+
+     <p>
+        <br> <br>
+        <form class="login100-form validate-form" action="/routine" method="GET" style="margin: auto;">
+            <button class="linkBtn" onclick='/routine.html'> Create a New Workout Routine </button>
+        </form>
+    </p>
+
+<!-- WORKOUT CARDS -->
+    <p>
+        <br>
+    {{message }}
+        <br>
+        <div class="card-container" >
+
+            {% for e in exerciselist %}
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                         <div class="flip-card-front">
+
+                             <img src="{{e.example}}" alt="Workout Demo" style="width:300px; height:300px;">
+                                <p class="img_name"  style="font-size:25px">
+                                <br>
+                                 {{e.exerciseName}}
+                             </p>
+
+                        </div>
+                    <div class="flip-card-back">
+                        <br>
+                        <h1>{{e.exerciseName}}</h1>
+                        <br>
+                        <p> Equipment: {{e.equipment}}</p>
+                        <br>
+                        <p>Exercise Type: {{e.exerciseType}}</p>
+                        <br>
+                        <p>Major Muscle: {{e.majorMuscle}}</p>
+                        <br>
+                        <p>Minor Muscle: {{e.minorMuscle}}</p>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        <br> <br>
+
+        <form class="login100-form validate-form" action="/workouts" method="GET" style="margin: auto;">
+            <button class="linkBtn" type="submit"> Click here to Start Over </button>
+        </form>
+
+
+
+        </div>
+    </p>
+    <script src="../static/js/test.js"></script>
+</body>
+</html>
+
+
