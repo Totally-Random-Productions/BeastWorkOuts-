@@ -50,7 +50,7 @@ def signup():
 			try:
 				db.session.add(newUser)
 				db.session.commit()
-				return redirect(url_for('login')), 201
+				return render_template('login.html'), 201
 			except IntegrityError:
 				db.session.rollback()
 				return "Looks like you already signed up", 400
@@ -71,15 +71,15 @@ def login():
 		if student and student.check_password(password):
 			time = timedelta(hours=1)
 			login_user(student, False, time)
-			return redirect(url_for('workouts')), 200
+			return render_template('workouts.html'), 200
 		if student is None:
-			return redirect(url_for('signup')), 401
+			return render_template('signup.html'), 401
 		return "Invalid login", 401
 
 
 @login_manager.unauthorized_handler
 def unauthorized():
-	return redirect(url_for('login'))
+	return render_template('login.html')
 
 
 @app.route("/oops")
@@ -116,7 +116,7 @@ def search():
 @app.route("/workouts", methods=(['GET']))
 @login_required
 def routine2():
-	return redirect(url_for('routine'))
+	return render_template('routine.html')
 
 
 @app.route("/routine", methods=(['GET']))
