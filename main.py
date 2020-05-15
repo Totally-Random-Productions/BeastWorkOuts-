@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from datetime import timedelta
 
-from flask_login import login_user, LoginManager, login_required, logout_user
+from flask_login import login_user, LoginManager, login_required, logout_user, current_user
 from models import db, Student, Exercise, Routine, Selected
 from sqlalchemy.exc import IntegrityError
 
@@ -125,19 +125,36 @@ def routine():
 def create_my_routine():
 	data = request.form.to_dict()
 	print(data)
-	rec = Routine(routineName=data["Routine Name"], userid=login_user(Student).id)
+	rec = Routine(routineName=data["routineName"], userid=current_user.id)
 	try:
 		db.session.add(rec)
 		db.session.commit()
-		add_exercises(data)
-		return data["Routine Name"], 201
+		return data["routineName"], 201
 	except IntegrityError:
 		db.session.rollback()
 		return "Routine already exists", 400
 
-
+'''
 def add_exercises(data):
-	pass
+	rid = db.session.query(Routine.routineID).order_by(Routine.routineID.desc()).first()
+	print(rid)
+	for key in data:
+		if key == "exercise":
+			print(data[key])
+			exid = db.session.query(Exercise.exerciseID).filter(Exercise.exerciseName.like(data[key])).limit(1)
+			print(exid)
+			reps = data["reps"]
+			print(reps)
+			sets = data["sets"]
+			print(sets)
+			newSet = Selected(rid=rid, reps=reps, sets=sets, eid=exid)
+			try:
+				db.session.add(newSet)
+				db.session.commit()
+			except IntegrityError:
+				db.session.rollback()
+	return 'OK'
+'''
 
 
 @app.route("/aboutus")
