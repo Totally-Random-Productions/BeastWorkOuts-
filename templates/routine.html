@@ -272,6 +272,35 @@
     <div class="card-container" id="currentRoutine" >
     </div>
 
+
+       <div class="row">
+        <table class="col m6 offset-m3">
+          <thead class="thead-dark">
+                <tr>
+                    <th>Exercise</th>
+                    <th>Reps</th>
+                    <th>Sets</th>
+                </tr>
+            </thead>
+          <tbody>
+                {% for r in routs %}
+                    {% for es in exers %}
+                <tr>
+
+                    {% if es.rid == r.routineID %}
+                    {{r.routineName}}
+                    <td>{{es.ename}}</td>
+                    <td>{{es.reps}}</td>
+                    <td>{{es.sets}}</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+          {% endfor %}
+            </tbody>
+        </table>
+      </div>
+
+
     <p style="text-align: center;">
         <button type="button" class="deleteButton"  id="delete" style="display:show"> Delete </button>
         <button type="button" class="updateButton" id="update" style="display:show"> Update </button>

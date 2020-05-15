@@ -128,33 +128,32 @@ def create_my_routine():
 	rec = Routine(routineName=data["routineName"], userid=current_user.id)
 	try:
 		db.session.add(rec)
+		num = db.session.flush()
 		db.session.commit()
-		return data["routineName"], 201
+		add_exercises(num, data)
+		return routine(), 201
 	except IntegrityError:
 		db.session.rollback()
 		return "Routine already exists", 400
 
-'''
-def add_exercises(data):
-	rid = db.session.query(Routine.routineID).order_by(Routine.routineID.desc()).first()
-	print(rid)
+
+def add_exercises(rid, data):
 	for key in data:
 		if key == "exercise":
 			print(data[key])
-			exid = db.session.query(Exercise.exerciseID).filter(Exercise.exerciseName.like(data[key])).limit(1)
-			print(exid)
+			name = str(data[key])
 			reps = data["reps"]
 			print(reps)
 			sets = data["sets"]
 			print(sets)
-			newSet = Selected(rid=rid, reps=reps, sets=sets, eid=exid)
+			newSet = Selected(rid=rid, reps=reps, sets=sets, ename=name)
 			try:
 				db.session.add(newSet)
 				db.session.commit()
 			except IntegrityError:
 				db.session.rollback()
-	return 'OK'
-'''
+	return
+
 
 
 @app.route("/aboutus")

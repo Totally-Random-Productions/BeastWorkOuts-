@@ -75,12 +75,11 @@ class Selected(db.Model):
     rid = db.Column(db.Integer, db.ForeignKey('routine.routineID'))
     reps = db.Column(db.Integer, nullable=False)
     sets = db.Column(db.Integer, nullable=False)
-    eid = db.Column(db.Integer, db.ForeignKey('exercise.exerciseID'))
-    exercise = db.relationship('Exercise')
+    ename = db.Column(db.String(50), nullable=False)
 
     def toDict(self):
         return {
-            "Exercise": self.exercise.toDict(),
+            "Exercise": self.ename,
             "Reps": self.reps,
             "Sets": self.sets
         }
