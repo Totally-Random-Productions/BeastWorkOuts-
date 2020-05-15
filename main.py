@@ -50,7 +50,7 @@ def signup():
 			try:
 				db.session.add(newUser)
 				db.session.commit()
-				return login(), 201
+				return render_template('login.html'), 201
 			except IntegrityError:
 				db.session.rollback()
 				return "Looks like you already signed up", 400
@@ -73,7 +73,7 @@ def login():
 			login_user(student, False, time)
 			return workouts(), 200
 		if student is None:
-			return signupPage(), 401
+			return render_template("signup.html"), 401
 		return "Invalid login", 401
 
 
