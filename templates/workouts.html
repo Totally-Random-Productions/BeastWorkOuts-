@@ -1,5 +1,3 @@
-<!--TODO: Everything lol -->
-
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -95,10 +93,11 @@ body {
   border: none;
   background-color: inherit;
   padding: 14px 14px;
-  font-size: 16px;
   cursor: pointer;
   display: inline-block;
   border-radius: 10px;
+  font-size: 17px;
+  color: #666666
 }
 
 .linkBtn:hover {background: #eee;}
@@ -110,18 +109,18 @@ body {
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Best Fit</a>
+      <a class="navbar-brand" href="/">Best Fit</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="/">Home</a></li>
-      <li><a href="workouts">Workouts and Programs</a></li>
+      <li><a href="/">Home</a></li>
+      <li class="active"><a href="workouts">Workouts and Programs</a></li>
       <li><a href="routine">Workout Routines</a></li>
       <li><a href="aboutus">About Us</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
         <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         <li><a href="signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-		<li><a href="#" style="font-size:15px"><span class="fa fa-fw fa-search"></span> Search</a> </li>
+		<li><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a> </li>
     </ul>
   </div>
 </nav>
@@ -130,8 +129,8 @@ body {
 
 <h1> Workouts and Programs
 
-    <form class="search-wrapper cf" style="float:right">
-        <input type="text" placeholder="Search here ..." required style="box-shadow: none;">
+    <form class="search-wrapper cf" style="float:right" action="/workouts" method="POST">
+        <input type="text" name="keyword" placeholder="Search here ..." required style="box-shadow: none;">
         <button type="submit">Search</button>
 
     </form> </h1>
@@ -140,46 +139,53 @@ body {
         <br> <br>
         <form class="login100-form validate-form" action="/routine" method="GET" style="margin: auto;">
             <button class="linkBtn" onclick='/routine.html'> Create a New Workout Routine </button>
-            <!--<a href="routine.html" class="button">Click Here</a> -->
         </form>
     </p>
 
 <!-- WORKOUT CARDS -->
     <p>
         <br>
+    {{message }}
         <br>
         <div class="card-container" >
-        {% for e in exerciselist %}
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <!--
-                    <div class="checkboxButton">
-                        <input id="workoutID" type="checkbox" name="workoutName" value="workout" /> -->
-                        <img src= {{e.example}} alt="Workout Demo" style="width:300px;height:300px;">
-                        <p class="img_name"  style="font-size:25px">
-                        <br>
-                            {{e.exerciseName}}
-                        </p>
-                <!--
-                    </div> -->
-                </div>
-                <div class="flip-card-back">
-                    <br>
-                    <h1>{{e.exerciseName}}</h1>
-                    <br>
-                    <p> Equipment: {{e.equipment}}</p>
-                    <br>
-                    <p>Exercise Type: {{e.exerciseType}}</p>
-                    <br>
-                    <p>Major Muscle: {{e.majorMuscle}}</p>
-                    <br>
-                    <p>Minor Muscle: {{e.minorMuscle}}</p>
 
+            {% for e in exerciselist %}
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                         <div class="flip-card-front">
+
+                             <img src="{{e.example}}" alt="Workout Demo" style="width:300px; height:300px;">
+                                <p class="img_name"  style="font-size:25px">
+                                <br>
+                                 {{e.exerciseName}}
+                             </p>
+
+                        </div>
+                    <div class="flip-card-back">
+                        <br>
+                        <h1>{{e.exerciseName}}</h1>
+                        <br>
+                        <p> Equipment: {{e.equipment}}</p>
+                        <br>
+                        <p>Exercise Type: {{e.exerciseType}}</p>
+                        <br>
+                        <p>Major Muscle: {{e.majorMuscle}}</p>
+                        <br>
+                        <p>Minor Muscle: {{e.minorMuscle}}</p>
+
+                    </div>
                 </div>
             </div>
-        </div>
-        {% endfor %}
+            {% endfor %}
+
+        <br> <br>
+
+        <form class="login100-form validate-form" action="/workouts" method="GET" style="margin: auto;">
+            <button class="linkBtn" type="submit"> Click here to Start Over </button>
+        </form>
+
+
+
         </div>
     </p>
     <script src="../static/js/test.js"></script>

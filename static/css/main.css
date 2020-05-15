@@ -1,8 +1,3 @@
-/*TODO: Clean up code */
-
-
-
-
    /*Clearing Floats*/
     .cf:before, .cf:after{
         content:"";
@@ -410,8 +405,8 @@ iframe {
 }
 
 .btn {
-  font-family: Montserrat-Bold;
-  font-size: 15px;
+  font-family: Montserrat;
+  font-size: 17px;
   line-height: 1.5;
   color: #fff;
   text-transform: uppercase;
@@ -424,7 +419,6 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 0 25px;
-
 }
 
 

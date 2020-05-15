@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
-        .openButton {
+        .openButton  {
               border: none;
               background-color: inherit;
               padding: 14px 14px;
@@ -27,18 +27,19 @@
 
         .openButton:hover {background: #eee;}
 
-        /* Button used to open the contact form - fixed at the bottom of the page
-        .open-button {
-          background-color: #555;
-          color: white;
-          padding: 16px 20px;
-          border: none;
-          cursor: pointer;
-          opacity: 0.8;
-          position: absolute;
-          margin: auto;
+         /*DELETE AND UPDATE BUTTON CODE STARTS HERE*/
+         .deleteButton, .updateButton  {
+              border: none;
+              background-color: inherit;
+              padding: 14px 14px;
+              font-size: 16px;
+              cursor: pointer;
+              display: inline-block;
+              border-radius: 10px;
+            }
 
-        }*/
+         .deleteButton:hover {background: #eee;}
+         .updateButton:hover{background: #eee;}
 
         /* The popup form - hidden by default */
         .form-popup {
@@ -185,24 +186,18 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Best Fit</a>
+      <a class="navbar-brand" href="/">Best Fit</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="/">Home</a></li>
-      <li><a href="workouts">Workouts and Programs</a></li>
-      <li><a href="routine">Workout Routines</a></li>
+      <li><a href="/">Home</a></li>
+      <li ><a href="workouts">Workouts and Programs</a></li>
+      <li class="active"><a href="routine">Workout Routines</a></li>
       <li><a href="aboutus">About Us</a></li>
-	  <!--
-        <li>
-    <form class="newsearch" style="float:right">
-        <input type="text" placeholder="Search workouts ...">
-        <button type="submit">Search</button>
-    </form></li> -->
     </ul>
     <ul class="nav navbar-nav navbar-right">
         <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         <li><a href="signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-		<li><a href="#" style="font-size:15px"><span class="fa fa-fw fa-search"></span> Search</a> </li> <!--New Search Bar Code -->
+		<li><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a> </li>
     </ul>
   </div>
 </nav>
@@ -271,20 +266,22 @@
         </div>
     </p>
 
-    <label for="reps"><b>Reps</b></label>
-    <input type="text" placeholder="Enter the amount of reps" id="reps" name="reps" required>
-
-    <label for="sets"><b>Sets</b></label>
-    <input type="text" placeholder="Enter the amount of sets" id="sets" name="sets" required>
-
-    <button type="button" class="btn" >Submit</button> <br>
+    <button type="button" class="btn" id="submitRoutine">Submit</button> <br>
     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+
   </form>
 </div>
 
 <div class="content">
-  <h1>Your Workout Routines</h1>
+  <h3>Your Workout Routines</h3>
+    <br>
     <div class="card-container"> </div>
+
+    <p style="text-align: center;">
+        <button type="button" class="deleteButton"  id="delete" style="display:show"> Delete </button>
+        <button type="button" class="updateButton" id="update" style="display:show"> Update </button>
+    </p>
+
 </div>
 
 <script>
@@ -298,8 +295,7 @@ function closeForm() {
 
 /*CODE FOR SUBMIT BUTTON */
 $(document).ready(function(){
-
-    $('.btn').click(function(){
+    $('#submitRoutine').click(function(){
      $('input[name=workoutName]:checked').parent().show();
 
     var list = $('.content div');
@@ -311,18 +307,22 @@ $(document).ready(function(){
       item = $(this).parents(".flip-card").clone();
       list.append(item);
 
-      var sets = $("#sets").val();
-      var reps = $("#reps").val();
+      var reps = prompt("Please enter the amount of Reps for: ", $(this).val());
+      var sets = prompt("Please enter the amount of Sets for: ", $(this).val());
 
       list.append("Reps: ", reps);
-      list.append("Sets: ", sets);
+      list.append("\nSets: ", sets);
 
+    /* DELETE CODE */
+      $(".deleteButton").on("click", function(){
+       /*$(item).closest('div').remove(); THIS REMOVES THE PICTURE ALONE */
+       $(list).remove();
     });
 
+    });
   });
 });
-
 </script>
 
 </body>
-</html>
+</html></html>
