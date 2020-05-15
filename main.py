@@ -125,6 +125,14 @@ def routine():
 	asgs = Exercise.query.all()
 	return render_template("routine.html", exerciselist=asgs)
 
+@app.route('/routine', methods=['POST'])
+@login_required
+def create_my_routine():
+    data = request.form.to_dict()
+    rec = Routine(routineID=data["Routine ID"], routineName=data["Routine Name"], userid=login_user(Student).id)
+    db.session.add(rec)
+    db.session.commit()
+    return data["Routine Name"] + " created", 201
 
 @app.route("/aboutus")
 def aboutus():
