@@ -272,21 +272,19 @@
   </form>
 </div>
 
-<form action="/routine" method="POST">
+<form>
+<h2>Your Workout Routines</h2>
+
 <div class="content">
-  <h3>Your Workout Routines</h3>
     <br>
+    <h3 id="routineName" name="Routine Name" > </h3>
 
-    <h4 id="routineName" name="Routine Name" > </h4>
-    <h4 id="routineID" name="Routine ID" > </h4>
-
-    <div class="card-container" id="currentRoutine" >
-    </div>
+    <div class="card-container" id="currentRoutine" ></div>
 
     <p style="text-align: center;">
         <button type="button" class="deleteButton"  id="delete" style="display:show"> Delete </button>
         <button type="button" class="updateButton" id="update" style="display:show"> Update </button>
-        <button type="submit" class="updateButton" id="saveRoutine" style="display:show" onclick="getInfo()"> Save Routine </button>
+        <button type="button" class="updateButton" id="saveRoutine" style="display:show" onclick="getInfo()"> Save Routine </button>
     </p>
 
 </div>
@@ -295,11 +293,8 @@
 <script>
 function getInfo() {
   var workoutName = prompt("Please enter a Workout Name");
-  var workoutID = prompt("Please enter a Workout ID");
   if (workoutName != null && workoutID != null) {
     document.getElementById("routineName").innerHTML = workoutName;
-    document.getElementById("routineID").innerHTML = workoutID;
-
   }
 }
 
@@ -334,7 +329,8 @@ $(document).ready(function(){
     /* DELETE CODE */
       $(".deleteButton").on("click", function(){
        /*$(item).closest('div').remove(); THIS REMOVES THE PICTURE ALONE */
-       $(list).remove();
+        $(".content").remove();
+
     });
 
 
@@ -342,6 +338,5 @@ $(document).ready(function(){
   });
 });
 </script>
-
 </body>
 </html></html>
