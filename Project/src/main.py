@@ -33,30 +33,9 @@ app = create_app()
 app.app_context().push()
 ''' End Boilerplate Code '''
 
-'''Set up JWT here '''
-
-
-def authenticate(sId, password):
-    student = Student.query.filter_by(studentId=sId).first()
-    if student and student.check_password(password):
-        return student
-
-
-# Payload is a dictionary which is passed to the function by Flask JWT
-def identity(payload):
-    return Student.query.get(payload['identity'])
-
-
-jwt = JWT(app, authenticate, identity)
-
-''' End JWT Setup '''
-
-
-
-
-@app.route("/test")
-def hello():
-    return "Hello World!"
+@app.route("/oops")
+def error():
+    return render_template("error.html")
 
 
 @app.route("/")
@@ -80,11 +59,11 @@ def signup():
             try:
                 db.session.add(newUser)
                 db.session.commit()
-                return redirect(url_for('login'))
+                return redirect(url_for('login')), 201
             except IntegrityError:
                 db.session.rollback()
-                return 'Username already exists'
-        return 'Nothing submitted'
+                return "Looks like you already signed up", 400
+        return 'Nothing submitted', 400
     return
 
 
@@ -100,14 +79,11 @@ def login():
         password = userData['pass']
         student = Student.query.filter_by(studentId=username).first()
         if student and student.check_password(password):
-            flash('Logged in successfully')
             login_user(student)
-            return redirect(url_for('workouts'))
+            return redirect(url_for('workouts')), 200
         if student is None:
-            flash('You haven\'t registered yet')
-            return redirect(url_for('signup'))
-        flash('Invalid login')
-        return redirect(url_for('login'))
+            return redirect(url_for('signup')), 401
+        return "Invalid login", 401
 
 
 @login_manager.unauthorized_handler
