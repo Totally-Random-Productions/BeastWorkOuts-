@@ -206,10 +206,15 @@
 
 <h1> Workout Routines
 
-
+    <form class="search-wrapper cf" style="float:right">
+        <input type="text" placeholder="Search here ..." required style="box-shadow: none;">
+        <button type="submit">Search</button>
+    </form>
 
     <p style="text-align: center">
         <br> <br>
+        <!--<button class="linkBtn" onclick="window.location.href='routine.html';"> Create a New Workout Routine </button> -->
+        <!--<a href="routine.html" class="button">Click Here</a> -->
         <button class="openButton" onclick="openForm()">Create a New Workout Routine</button>
     </p>
 
@@ -230,20 +235,33 @@
         <br>
         <div class="card-container" >
         {% for e in exerciselist %}
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <div class="checkboxButton">
-                            <input id="workoutID" type="checkbox" name="workoutName" value="{{e.exerciseName}}" />
-                            <img src= "{{e.example}}" alt="Workout Demo" style="width:150px;height:150px;"/>
-                            <p class="img_name"  style="font-size:20px; text-align:center;">
-                            <br>
-                                {{e.exerciseName}}
-                            </p>
-                        </div>
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <div class="checkboxButton">
+                        <input id="workoutID" type="checkbox" name="workoutName" value="{{e.exerciseName}}" />
+                        <img src= {{e.example}} alt="Workout Demo" style="width:150px;height:150px;">
+                        <p class="img_name"  style="font-size:20px; text-align:center;">
+                        <br>
+                            {{e.exerciseName}}
+                        </p>
                     </div>
                 </div>
+                <!--
+                <div class="flip-card-back">
+                    <br>
+                    <h1>{{e.exerciseName}}</h1>
+                    <br>
+                    <p> Equipment: {{e.equipment}}</p>
+                    <br>
+                    <p>Exercise Type: {{e.exerciseType}}</p>
+                    <br>
+                    <p>Major Muscle: {{e.majorMuscle}}</p>
+                    <br>
+                    <p>Minor Muscle: {{e.minorMuscle}}</p>
+                </div> -->
             </div>
+        </div>
         {% endfor %}
         </div>
     </p>
@@ -252,6 +270,18 @@
     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
 
   </form>
+</div>
+
+<div class="content">
+  <h3>Your Workout Routines</h3>
+    <br>
+    <div class="card-container"> </div>
+
+    <p style="text-align: center;">
+        <button type="button" class="deleteButton"  id="delete" style="display:show"> Delete </button>
+        <button type="button" class="updateButton" id="update" style="display:show"> Update </button>
+    </p>
+
 </div>
 
 <script>
@@ -295,4 +325,4 @@ $(document).ready(function(){
 </script>
 
 </body>
-</html>
+</html></html>
