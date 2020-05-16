@@ -272,19 +272,32 @@
   </form>
 </div>
 
-<div class="content">
-  <h3>Your Workout Routines</h3>
-    <br>
-    <div class="card-container"> </div>
+<form>
+<h2>Your Workout Routines</h2>
 
+<div class="content">
+    <br>
+    <h3 id="routineName" name="Routine Name" > </h3>
+
+    <div class="card-container" id="currentRoutine" ></div>
+</div>
     <p style="text-align: center;">
-        <button type="button" class="deleteButton"  id="delete" style="display:show"> Delete </button>
+        <button type="submit" class="deleteButton"  id="delete" style="display:show"> Delete </button>
         <button type="button" class="updateButton" id="update" style="display:show"> Update </button>
+        <button type="button" class="updateButton" id="saveRoutine" style="display:show" onclick="getInfo()"> Save Routine </button>
     </p>
 
-</div>
+
+</form>
 
 <script>
+function getInfo() {
+  var workoutName = prompt("Please enter a Workout Name");
+  if (workoutName != null && workoutID != null) {
+    document.getElementById("routineName").innerHTML = workoutName;
+  }
+}
+
 function openForm() {
   document.getElementById("myForm").style.display = "block";
 }
@@ -313,16 +326,15 @@ $(document).ready(function(){
       list.append("Reps: ", reps);
       list.append("\nSets: ", sets);
 
-    /* DELETE CODE */
-      $(".deleteButton").on("click", function(){
-       /*$(item).closest('div').remove(); THIS REMOVES THE PICTURE ALONE */
-       $(list).remove();
-    });
 
+    /* DELETE CODE
+      $(".deleteButton").on("click", function(){
+      $("#workoutID").prop("checked", false);
+      //$(".content").remove();
+            });*/
+        });
     });
-  });
 });
 </script>
-
 </body>
 </html></html>

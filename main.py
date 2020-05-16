@@ -71,9 +71,9 @@ def login():
 		if student and student.check_password(password):
 			time = timedelta(hours=1)
 			login_user(student, False, time)
-			return workouts(), 200
+			return render_template('workouts.html'), 200
 		if student is None:
-			return render_template("signup.html"), 401
+			return render_template('signup.html'), 401
 		return "Invalid login", 401
 
 
@@ -110,13 +110,13 @@ def search():
 		else:
 			report = "No exercises found."
 			return render_template("workouts.html", message=report, exerciselist=asgs)
-	return render_template("error.html"), 400
+	return error(), 400
 
 
 @app.route("/workouts", methods=(['GET']))
 @login_required
 def routine2():
-	return render_template("routine.html", exerciselist=asgs)
+	return render_template('routine.html')
 
 
 @app.route("/routine", methods=(['GET']))
@@ -125,6 +125,14 @@ def routine():
 	asgs = Exercise.query.all()
 	return render_template("routine.html", exerciselist=asgs)
 
+@app.route('/routine', methods=['POST'])
+@login_required
+def create_my_routine():
+    data = request.form.to_dict()
+    rec = Routine(routineID=data["Routine ID"], routineName=data["Routine Name"], userid=login_user(Student).id)
+    db.session.add(rec)
+    db.session.commit()
+    return data["Routine Name"] + " created", 201
 
 @app.route("/aboutus")
 def aboutus():
